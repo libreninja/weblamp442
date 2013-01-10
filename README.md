@@ -1,9 +1,9 @@
 UW-PHP-course Group Project
 ==========
 
-### Product Description:
+### Project Description:
 
-Group project for "Object-Oriented PHP for High-Traffic Web Sites" course.
+This is a group project for an "Object-Oriented PHP for High-Traffic Web Sites" course.
 This project demonstrates collaborative open source PHP web development focused on implementing some subset of: OOP, TDD, CI, patterns, scalability, etc...
 
 
