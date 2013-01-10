@@ -9,6 +9,7 @@ This project demonstrates collaborative open source PHP web development focused 
 
 ### three, two, one go:
 
+<pre><code>
 <?php
 require_once('main.php');
 
@@ -18,3 +19,4 @@ require_once('main.php');
   // go
   $p->produce();
 ?>
+</code></pre>
