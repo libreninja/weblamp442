@@ -1,4 +1,4 @@
-project README
+UW-PHP-course Group Project
 ==========
 
 ### Product Description:
