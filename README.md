@@ -12,9 +12,18 @@ This project demonstrates collaborative open source PHP web development focused 
 ```php
 require_once('main.php');
 
-// get ready
+// construct pipeline manager object
 $p = new Producer();
 
-// go
-$p->produce();
+// go go go
+$p->produceAll();
+
+// produce specific pipeline item
+$p->produce(2);
+
+// add content to producer pipeline
+$p->add2Pipeline("foo", "bar");
+
+$p->produce("foo");
 ```
+
