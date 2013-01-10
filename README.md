@@ -9,7 +9,7 @@ This project demonstrates collaborative open source PHP web development focused 
 
 ### Usage:
 
-<p>NOTE: The demo code really works. Although it is just a test project.</p>
+<p>NOTE: The demo code really works, although it is just a test project.</p>
 
 ```php
 require_once('main.php');
