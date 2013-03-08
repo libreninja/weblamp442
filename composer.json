@@ -1,0 +1,23 @@
+{
+    "name": "WordCount webapp",
+    "description": "UW PHP course group project",
+    "authors": [
+        {
+            "name": "Josh Benner",
+            "email": "sjbenner@uw.edu"
+        }
+    ],
+    "require": {
+        "phpunit/phpunit": "3.7.*@dev"
+    },
+    "autoload": {
+        "classmap": [
+            "Src/",
+            "Test/"
+        ]
+    },
+    "config": {
+        "vendor-dir" : "vendors",
+        "vendor-bin" : "vendors/bin"
+    }
+}

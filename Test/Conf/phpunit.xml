@@ -1,0 +1,11 @@
+<phpunit bootstrap="../bootstrap.php"
+    colors="true"
+    verbose="true"
+    >
+    <testsuites>
+        <testsuite name="UW PHP class - group project test suite">
+            <directory>../*</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
+
