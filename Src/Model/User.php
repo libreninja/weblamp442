@@ -29,10 +29,10 @@ class User
         return Array(
             "first" => $this->_fname,
             "last" => $this->_lname,
-            "posts" => Array( new \Model\Post($this->_id, "foo bar bla"),
-            new \Model\Post($this->_id, "foo bar bla"), 
-            new \Model\Post($this->_id, "foo bar bla"),
-            new \Model\Post($this->_id, "foo bar bla")
+            "posts" => Array( new \Model\Post($this->_id, "foo bar bla", "revisiting foo"),
+            new \Model\Post($this->_id, "foo bar bla", "a bar too far"), 
+            new \Model\Post($this->_id, "foo bar bla", "the trouble with bla"),
+            new \Model\Post($this->_id, "foo bar bla", "never foo again")
         ));
     }
 

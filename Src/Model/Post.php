@@ -23,6 +23,11 @@ class Post implements \Utilities\ParseInterface
         $this->_title = $title;
     }
 
+    public function getTitle()
+    {
+        return $this->_title;
+    }
+
     /**
      * Implements the ParseInterface parse function
      *

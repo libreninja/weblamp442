@@ -23,7 +23,7 @@ class UserController
 
     public function home()
     {
-        $data = $this->_model->user_info();
+        $data = $this->_model->getUserInfo();
         $this->_load->view( 'userview.php', $data );
     }
 }

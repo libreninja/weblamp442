@@ -6,6 +6,18 @@
 //
 // @see http://getcomposer.org/doc/01-basic-usage.md for detail usage
 require 'vendors/autoload.php';
-
-new \Controller\UserController();
+if(isset($_POST['submit']) )
+{
+    if($_POST['submit'] === "login") {
+        echo "logging in". PHP_EOL;
+    }
+    else
+    {
+        echo "Signing up". PHP_EOL;
+    }
+}
+else
+{
+    new \Controller\LoginController();
+}
 ?>

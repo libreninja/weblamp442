@@ -10,8 +10,8 @@
  **/
 class PostController
 {
-    public $_load;
-    public $_model;
+    private $_load;
+    private $_model;
     
     function __construct()
     {
@@ -21,7 +21,7 @@ class PostController
         $this->ShowPost();
     }
 
-    public function ShowPost()
+    private function ShowPost()
     {
         $data = $this->_model->GetPostInfo();
         $this->_load->view( 'postview.php', $data );
