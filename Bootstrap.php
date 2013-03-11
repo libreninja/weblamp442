@@ -7,5 +7,5 @@
 // @see http://getcomposer.org/doc/01-basic-usage.md for detail usage
 require 'vendors/autoload.php';
 
-new \Controller\PostController();
+new \Controller\UserController();
 ?>

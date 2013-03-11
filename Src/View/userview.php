@@ -7,9 +7,15 @@
         
     </head>
     <body>
-    <h1>Post:</h1>
-    <textarea name="post" rows="20" cols="50">
-    </textarea>
+    <h1>Welcome <?php echo $fname. " ". $lname; ?></h1>
+<ul>
+<?php 
+foreach($posts as $post)
+{
+    echo "<li>". $post->title. "</li>";
+}
+?>
+    </ul>
     </body>
 
 </html>

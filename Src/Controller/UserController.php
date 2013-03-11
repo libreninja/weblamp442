@@ -16,14 +16,14 @@ class UserController
     function __construct()
     {
         $this->_load = new Load();
-        $this->_model = new \Model\User();
+        $this->_model = new \Model\User("Kevin", "Bacon", "kevin@sixdegrees.com");
 
         $this->home();
     }
 
     public function home()
     {
-        $data = $this->_model->user_info();
+        $data = $this->_model->getUserInfo();
         $this->_load->view( 'userview.php', $data );
     }
 }
