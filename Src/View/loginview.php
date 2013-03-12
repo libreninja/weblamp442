@@ -1,30 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" href="css/login.css" type="text/css" />
         <title>Sign in/up</title>
         
     </head>
     <body>
     <h1>Welcome</h1>
-    <form id="login" action="Bootstrap.php" method="post">
-        <h2>log in</h2>
+    <form class="loginForm" action="Bootstrap.php" method="post">
+        <h2>log in or register</h2>
         <p>
-        <label id="usernameLabel">User name</label>
-        <input type="text" name="username" value=""/>
+        <label for="username">Username or email</label>
+        <br />
+        <input type="text" name="username" />
         </p>
         <p>
-        <label id="passwordLabel">Password</label>
-        <input type="password" name="password" value=""/>
+        <label for="password">Password</label>
+        <br />
+        <input type="password" name="password" />
         </p>
-        <input type="submit" name="submit" value="login">
-        <h2>sign up</h2>
-        <input type="text" name="fname" value=""/>
-        <input type="text" name="lname" value=""/>
-        <input type="text" name="email" value=""/>
-        <input type="password" name="password" value=""/>
-        <input type="submit" name="submit" value="signup">
+        <input type="submit" name="submit" value="login" />
+        <input type="submit" name="submit" value="signup" />
     </form>
     </body>
 
