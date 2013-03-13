@@ -5,9 +5,6 @@
  * @author Josh Benner
  **/
 
-// Starting the session 
-session_start(); 
-
 if(isset($_SESSION['user'])) 
 { 
     // Identifying the user 
@@ -17,7 +14,6 @@ if(isset($_SESSION['user']))
 } 
 else // not logged in
 { 
-
     new \Controller\SignUpController();
 } 
 ?>

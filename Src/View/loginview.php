@@ -2,27 +2,36 @@
 <html lang="en">
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <link rel="stylesheet" href="css/login.css" type="text/css" />
+        <link rel="stylesheet" href="Src/View/css/login.css" type="text/css" />
         <title>Sign in/up</title>
-        
+
     </head>
     <body>
-    <h1>Welcome</h1>
-    <form class="loginForm" action="Bootstrap.php" method="post">
-        <h2>log in or register</h2>
-        <p>
-        <label for="username">Username or email</label>
-        <br />
-        <input type="text" name="username" />
-        </p>
-        <p>
-        <label for="password">Password</label>
-        <br />
-        <input type="password" name="password" />
-        </p>
-        <input type="submit" name="submit" value="login" />
-        <input type="submit" name="submit" value="signup" />
-    </form>
+    <?php
+    if( isset($_POST['submit']))
+    {
+        if( $_POST['submit'] === 'signup' )
+        {
+            include 'signup.php';
+        }
+    }
+    else if( $_POST['signup'] === 'submit' )
+    {
+        $user = new \Model\User(
+            $_POST['fname'],
+            $_POST['lname'],
+            $_POST['email'],
+            $_POST['password']
+        );
+
+
+
+    }
+    else
+    {
+        include 'login.php';
+    }
+    ?>
     </body>
 
 </html>

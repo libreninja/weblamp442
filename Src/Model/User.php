@@ -7,21 +7,42 @@ namespace Model;
 
 class User
 {
-    private $_id;
-    private $_fname;
-    private $_lname;
-    private $_email;
+    private $_db;
+    private $_entity;
 
     /**
      * constructor 
      * @param  string $fname user's first name
      * @param  string $lname user's last name
      **/
-    public function __construct($fname, $lname, $email)
+    public function __construct($fname, $lname, $email, $password, $create=false)
     {
-        $this->_fname = $fname;
-        $this->_lname = $lname;
-        $this->_email = $email;
+        $this->_db = new \Utilities\Db\Connection(
+            Array(
+                'host' => 'localhost',
+                'username' => 'user',
+                'password' => 'password',
+                'dbname' => 'weblamp442'
+            )
+        );
+
+        if(isset($_SESSION['user']))
+        {
+            $this->_entity = $_SESSION['user'];
+        }
+        else if($create)
+        {
+            $salt = uniqid(mt_rand(), true);
+            $this->_db->insert('User', Array(
+                'fname' => $fname,
+                'lname' => $lname,
+                'email' => $email,
+                'salt' => $salt,
+                'password' => hash("sha256", $salt . $password)
+                )
+            );
+        }
+
     }
 
     public function getUserInfo()
