@@ -7,8 +7,6 @@
 // @see http://getcomposer.org/doc/01-basic-usage.md for detail usage
 require 'vendors/autoload.php';
 
-if(!isset($_SESSION['user'])) 
-{
-    new \Controller\LoginController();
-}
+include 'Src/Controller/FrontController.php';
+
 ?>

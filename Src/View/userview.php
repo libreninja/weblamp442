@@ -7,7 +7,7 @@
         
     </head>
     <body>
-    <h1>Welcome <?php echo $fname. " ". $lname; ?></h1>
+    <h1>Welcome, <?php echo $first. " ". $last; ?></h1>
 <ul>
 <?php 
 foreach($posts as $post)

@@ -10,19 +10,27 @@
  **/
 class UserController
 {
-    public $_load;
-    public $_model;
+    private $_load;
+    private $_model;
     
     function __construct()
     {
         $this->_load = new Load();
-        $this->_model = new \Model\User("Kevin", "Bacon", "kevin@sixdegrees.com");
-
-        $this->home();
     }
 
-    public function home()
+    public function CreateNewUser($fname, $lname, $email, $password)
     {
+        $this->_model = new \Model\User($fname, $lname, $email, $password);
+
+        $this->_model->Persist();
+    }
+
+    public function ShowUser($userid)
+    {
+        $this->_model = new \Model\User();
+        $this->_model->LoadById($userid);
+
+        
         $data = $this->_model->getUserInfo();
         $this->_load->view( 'userview.php', $data );
     }

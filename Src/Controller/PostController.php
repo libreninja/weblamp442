@@ -8,20 +8,18 @@
 /**
  * post controller
  **/
-class PostController
+class PostController Extends ModelBase
 {
     private $_load;
     private $_model;
+    private $_db;
     
     function __construct()
     {
         $this->_load = new \Controller\Load();
-        $this->_model = new \Model\Post("Josh Benner", "The rain in Spain.");
-
-        $this->ShowPost();
     }
 
-    private function ShowPost()
+    private function ShowPost($postid)
     {
         $data = $this->_model->GetPostInfo();
         $this->_load->view( 'postview.php', $data );

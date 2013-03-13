@@ -12,11 +12,11 @@
         <br />
         <label for="email">Email Address</label>
         <br />
-        <input type="text" name="email" />
+        <input type="text" name="email" value="<?php echo $_POST['userid']; ?>" />
         <br />
         <label for="password">Password</label>
         <br />
-        <input type="password" name="password" />
+        <input type="password" name="password" value="<?php echo $_POST['password']; ?>" />
         <br />
         <label for="verify_pwd">Verify Password</label>
         <br />

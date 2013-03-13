@@ -3,13 +3,11 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <link rel="stylesheet" href="Src/View/css/login.css" type="text/css" />
-        <title>Sign in</title>
+        <title>Sign up</title>
 
     </head>
     <body>
-    <?php
-        include 'login.php';
-    ?>
+    <?php include 'signup.php'; ?>
     </body>
 
 </html>

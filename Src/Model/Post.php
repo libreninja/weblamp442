@@ -5,23 +5,11 @@
 
 namespace Model;
 
-class Post implements \Utilities\ParseInterface
+class Post Extends \Model\ModelBase implements \Utilities\ParseInterface
 {
     private $_authorId;
     private $_text;
     private $_title;
-
-    /**
-     * constructor 
-     * @param  string $author id for post
-     * @param  string $text of the post
-     **/
-    public function __construct($author, $text, $title="Untitled")
-    {
-        $this->_authorId = $author;
-        $this->_text = $text;
-        $this->_title = $title;
-    }
 
     public function getTitle()
     {
