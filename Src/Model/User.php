@@ -29,17 +29,19 @@ class User Extends \Model\ModelBase
     public function Persist()
     {
         if( count( $this->_db->select('User', 'email=:email',
-            Array(':email' => $email))) === 0)
+            Array(':email' => $this->email))) === 0)
         {
             try {
                 // generate a salt for password storage
-                $salt = uniqid(mt_rand(), true);
+                $salt = substr(uniqid(mt_rand(), true),0,5);
+                $pwd = hash("sha256", $salt . $this->password);
+                echo "salt: $salt";
                 $this->_db->insert('User', Array(
-                    'fname' => $fname,
-                    'lname' => $lname,
-                    'email' => $email,
+                    'fname' => $this->fname,
+                    'lname' => $this->lname,
+                    'email' => $this->email,
                     'salt' => $salt,
-                    'password' => hash("sha256", $salt . $password)
+                    'password' => hash("sha256", $salt . $this->password)
                 )
             );
             }
@@ -56,8 +58,16 @@ class User Extends \Model\ModelBase
 
     public function getUserInfo()
     {
-        $posts = $this->_db->select('Post', 'author_id=:userid',
-                                    Array(':userid' => $this->_id));
+        $rows = $this->_db->select('Post', 'author_id=:userid',
+                                    Array(':userid' => $this->_id), 'id');
+
+        $posts = Array();
+        foreach($rows as $id)
+        {
+            $post = new \Model\Post();
+            $post->LoadByPostId($id[0]);
+            $posts[] = $post;
+        }
         return Array(
             "first" => $this->fname,
             "last" => $this->lname,

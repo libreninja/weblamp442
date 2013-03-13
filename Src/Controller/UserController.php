@@ -9,7 +9,11 @@ class UserController Extends \Controller\ControllerBase
 
     public function CreateNewUser($fname, $lname, $email, $password)
     {
-        $this->_model = new \Model\User($fname, $lname, $email, $password);
+        $this->_model = new \Model\User();
+        $this->_model->fname = $fname;
+        $this->_model->lname = $lname;
+        $this->_model->email = $email;
+        $this->_model->password = $password;
 
         $this->_model->Persist();
     }

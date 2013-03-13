@@ -7,13 +7,19 @@ namespace Model;
 
 class Post Extends \Model\ModelBase implements \Utilities\ParseInterface
 {
-    private $_authorId;
-    private $_text;
-    private $_title;
+    private $_id;
+    public $_authorId;
+    public $_text;
+    public $_title;
 
     public function getTitle()
     {
         return $this->_title;
+    }
+
+    public function getId()
+    {
+        return $this->_id;
     }
 
     /**
@@ -45,10 +51,43 @@ class Post Extends \Model\ModelBase implements \Utilities\ParseInterface
     public function GetPostInfo()
     {
         return Array(
+            "_PostTitle" => $this->_title,
             "_PostAuthor" => $this->_authorId,
             "_PostText" => $this->_text,
             "_PostStats" => $this->parse()
         );
+    }
+
+    public function Persist()
+    {
+        try 
+        {
+            $this->_db->insert('Post', Array(
+                'title' => $this->_title,
+                'post' => $this->_text,
+                'author_id' => $this->_authorId
+            )
+        );
+        }
+        catch( \Exception $e )
+        {
+            echo 'Error creating new post: '. $e->getMessage(). PHP_EOL;
+        }
+    }
+
+    public function LoadByPostId($postid)
+    {
+        $rows = $this->_db->select('Post', 'id=:postid',
+            Array(':postid' => $postid));
+        if(count($rows) === 1)
+        {
+            $post = $rows[0];
+            $this->_id = $post['id'];
+            $this->_title = $post['title'];
+            $this->_text = $post['post'];
+            $this->_authorId = $post['author_id'];
+        }
+        
     }
 }
 ?>

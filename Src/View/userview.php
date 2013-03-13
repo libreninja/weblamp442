@@ -8,14 +8,20 @@
     </head>
     <body>
     <h1>Welcome, <?php echo $first. " ". $last; ?></h1>
-<ul>
+    <form class="postsForm" action="Bootstrap.php" method="post">
+    <h2>Your posts...</h2>
+    <ul>
 <?php 
 foreach($posts as $post)
 {
-    echo "<li>". $post->getTitle(). "</li>";
+    echo "<li>". $post->getTitle()
+        . "<button type='submit' name='userpost' value='"
+        . $post->getId(). "'>view</button></li>";
 }
 ?>
     </ul>
-    </body>
+    <input type="submit" name="userpost" value="New Post">
+    </form>
+</body>
 
 </html>
