@@ -7,8 +7,7 @@ namespace Model;
 
 class User
 {
-    private $_db;
-    private $_entity;
+    private $_id;
 
     /**
      * constructor 
@@ -17,7 +16,7 @@ class User
      **/
     public function __construct($fname, $lname, $email, $password, $create=false)
     {
-        $this->_db = new \Utilities\Db\Connection(
+        $this->_db = new \Utilities\Connection(
             Array(
                 'host' => 'localhost',
                 'username' => 'user',
@@ -28,21 +27,45 @@ class User
 
         if(isset($_SESSION['user']))
         {
-            $this->_entity = $_SESSION['user'];
+            $this->_id = $_SESSION['user'];
         }
-        else if($create)
+        else if(!$create)
         {
-            $salt = uniqid(mt_rand(), true);
-            $this->_db->insert('User', Array(
-                'fname' => $fname,
-                'lname' => $lname,
-                'email' => $email,
-                'salt' => $salt,
-                'password' => hash("sha256", $salt . $password)
-                )
-            );
+            $user = $this->_db->select('User', 'email=:email',
+                                        Array(':email' => $email));
+            if(count($user) === 1)
+            {
+                $this->_id = $user[0]['id'];
+            }
         }
-
+        else
+        {
+            // only create a new user if the email isn't in the db
+            if( count( $this->_db->select('User', 'email=:email',
+                Array(':email' => $email))) === 0)
+            {
+                try {
+                    // generate a salt for password storage
+                    $salt = uniqid(mt_rand(), true);
+                    $this->_db->insert('User', Array(
+                        'fname' => $fname,
+                        'lname' => $lname,
+                        'email' => $email,
+                        'salt' => $salt,
+                        'password' => hash("sha256", $salt . $password)
+                        )
+                    );
+                }
+                catch( \Exception $e )
+                {
+                    echo 'Error creating new user: '. $e->getMessage(). PHP_EOL;
+                }
+            }
+            else
+            {
+                echo 'User already exists.'. PHP_EOL;
+            }
+        }
     }
 
     public function getUserInfo()

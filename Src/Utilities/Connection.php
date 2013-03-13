@@ -1,4 +1,4 @@
-<?php namespace \Utilities\Db;
+<?php namespace Utilities;
 /**
  * DB connection class
  **/
@@ -47,7 +47,7 @@ class Connection
     /**
      * setup database connection
      **/
-    public function connect()
+    private function connect()
     {
         $this->_conn = new \PDO( $this->_dsn, $this->_uname, $this->_passwd );
 
@@ -66,6 +66,10 @@ class Connection
         {
             $params = array();
         }
+        if(!isset($this->_conn)) 
+        {
+            $this->connect();
+        }
         $stmt = $this->_conn->prepare( $sql );
         $stmt->execute($params);
         return $stmt;
@@ -83,12 +87,12 @@ class Connection
      **/
     public function select($table, $where='', $params='', $fields='*')
     {
+        $sql = "SELECT ". $fields. " FROM ". $table;
         if(!empty($where))
         {
             $sql .= " WHERE " . $where;
         }
 
-        $sql = "SELECT ". $fields. " FROM ". $table;
         $sql .= ";";
 
         return $this->prepareSQL( $sql, $params )->fetchAll();
@@ -163,26 +167,5 @@ class Connection
         $sql = "DELETE FROM ". $table. " WHERE ". $where. ";";
         return $this->prepareSQL($sql, $params);
     }
-}
-
-$configArray = array(
-    'host' => 'localhost',
-    'username' => 'user',
-    'password' => 'password',
-    'dbname' => 'weblamp442'
-);
-
-try {
-    $cn = new Connection( $configArray );
-    $cn->connect();
-    //$v = $cn->insert('User', array('firstname'=>'Ray', 'lastname'=>'Davies'));
-    //$cn->update('User', array('lastname' => 'Benner'), "lastname = :lastname", array(':lastname'=>'B-)'));
-    //$cn->delete('User', "lastname=:lastname", array(':lastname'=>'Bueller'));
-    $data = $cn->select('User'); //, 'lastname=:lastname', array(':lastname' => 'Auerbach'));
-    foreach($data as $row) {
-        print_r($row);
-    }
-} catch(\PDOException $ex) {
-    printf( $ex->getMessage() . PHP_EOL );
 }
 ?>

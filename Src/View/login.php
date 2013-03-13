@@ -2,9 +2,9 @@
     <h1>Welcome</h1>
         <h2>log in or register</h2>
         <p>
-        <label for="username">Username or email</label>
+        <label for="userid">email</label>
         <br />
-        <input type="text" name="username" />
+        <input type="text" name="userid" />
         </p>
         <p>
         <label for="password">Password</label>
