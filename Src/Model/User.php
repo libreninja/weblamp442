@@ -56,10 +56,13 @@ class User Extends \Model\ModelBase
 
     public function getUserInfo()
     {
+        $posts = $this->_db->select('Post', 'author_id=:userid',
+                                    Array(':userid' => $this->_id));
         return Array(
             "first" => $this->fname,
             "last" => $this->lname,
-            "email" => $this->email 
+            "email" => $this->email,
+            "posts" => $posts
         );
     }
 

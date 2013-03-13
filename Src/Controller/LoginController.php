@@ -41,8 +41,8 @@ class LoginController
                     if( $password === $user['password'] )
                     {
                         $_SESSION['user'] = $user['id'];
-                        $controller = new \Controller\UserController();
-                        $controller->ShowUser($_SESSION['user']);
+                        header("Location: ". $_SERVER['PHP_SELF']);
+                        exit();
                     }
                 }
             }

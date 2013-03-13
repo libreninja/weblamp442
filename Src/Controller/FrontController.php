@@ -14,7 +14,8 @@ if(!isset($_SESSION['user']))
 }
 else
 {
-    new \Controller\UserController($_SESSION['user']);
+    $controller = new \Controller\UserController();
+    $controller->ShowUser($_SESSION['user']);
 }
 
 ?>

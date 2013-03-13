@@ -1,3 +1,5 @@
+use weblamp442;
+
 CREATE TABLE User (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     fname VARCHAR(50),

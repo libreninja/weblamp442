@@ -4,19 +4,8 @@
  *
  * @author Josh Benner
  **/
-
-/**
- * main controller for app
- **/
-class UserController
+class UserController Extends \Controller\ControllerBase
 {
-    private $_load;
-    private $_model;
-    
-    function __construct()
-    {
-        $this->_load = new Load();
-    }
 
     public function CreateNewUser($fname, $lname, $email, $password)
     {
