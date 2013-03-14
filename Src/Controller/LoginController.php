@@ -63,8 +63,6 @@ class LoginController
     private function ValidateLogin($user)
     {
         $password = hash("sha256",$user['salt']. $_POST['password']);
-        var_dump($user);
-        var_dump($password);
         if( $password === $user['password'] )
         {
             $_SESSION['user'] = $user['id'];

@@ -11,6 +11,11 @@ class User Extends \Model\ModelBase
     public $email;
     public $password;
 
+    /**
+     * LoadById - find db record and set member vars accordingly
+     *
+     * @return void
+     **/
     public function LoadById($userid)
     {
         $rows = $this->_db->select('User', 'id=:userid',
@@ -26,6 +31,9 @@ class User Extends \Model\ModelBase
         }
     }
 
+    /**
+     * Persist - Save user to db
+     **/
     public function Persist()
     {
         if( count( $this->_db->select('User', 'email=:email',
@@ -56,18 +64,26 @@ class User Extends \Model\ModelBase
         }
     }
 
+    /**
+     * getUserInfo - return user info
+     * @return Array
+     **/
     public function getUserInfo()
     {
+        // load user post ids
         $rows = $this->_db->select('Post', 'author_id=:userid',
                                     Array(':userid' => $this->_id), 'id');
 
         $posts = Array();
+
+        // load post model and add to array
         foreach($rows as $id)
         {
             $post = new \Model\Post();
             $post->LoadByPostId($id[0]);
             $posts[] = $post;
         }
+
         return Array(
             "first" => $this->fname,
             "last" => $this->lname,
