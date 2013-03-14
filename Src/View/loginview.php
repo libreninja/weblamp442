@@ -11,6 +11,7 @@
     if(isset($_SESSION['last error']))
     {
         echo "Error: ". $_SESSION['last error'];
+        unset($_SESSION['last error']);
     }
     include 'login.php';
     ?>

@@ -7,7 +7,15 @@
 
     </head>
     <body>
-    <?php include 'signup.php'; ?>
+    <?php     
+    if(isset($_SESSION['last error']))
+    {
+        echo "Error: ". $_SESSION['last error'];
+        unset($_SESSION['last error']);
+    }
+    include 'signup.php';
+    ?>
+
     </body>
 
 </html>
