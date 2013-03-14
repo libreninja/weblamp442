@@ -19,9 +19,9 @@ class PostTest extends \PHPUnit_Framework_TestCase
      **/
     public function setUp()
     {
-        $author = "Josh Benner";
         $str = "This may be one of the longest, if not *the* longest strings ever parsed by this source code";
-        $this->_mock = new \Model\Post($author, $str);
+        $this->_mock = new \Model\Post();
+        $this->_mock->_text = $str;
     }
 
     /**
