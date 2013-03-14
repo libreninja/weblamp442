@@ -71,7 +71,8 @@ class LoginController
             header("Location: ". $_SERVER['PHP_SELF']);
             exit();
         }
-        echo "validation did not succeed.". PHP_EOL;
+        $_SESSION['last error'] = "validation did not succeed.";
+        header("Location: ". $_SERVER['PHP_SELF']);
     }
 
     private function LookupUser($email)
@@ -84,7 +85,8 @@ class LoginController
         {
             return $rows[0];
         }
-        throw new \Exception("Error looking up user.");
+        $_SESSION['last error'] = "Error looking up user.";
+        header("Location: ". $_SERVER['PHP_SELF']);
     }
 
     private function ShowForm($form)

@@ -8,7 +8,11 @@
     </head>
     <body>
     <?php
-        include 'login.php';
+    if(isset($_SESSION['last error']))
+    {
+        echo "Error: ". $_SESSION['last error'];
+    }
+    include 'login.php';
     ?>
     </body>
 
